@@ -52,7 +52,7 @@ class AnimeServices:
         datas = cls.get_all()['data']
 
         for data in datas:
-            if data['anime'] == anime:
+            if data['anime'].upper() == anime.upper():
                 raise AnimeAlreadExistsError()
 
         cls.create_table()
@@ -136,7 +136,7 @@ class AnimeServices:
             UPDATE
                 animes
             SET
-                anime= '{update_data['anime']}', 
+                anime= '{update_data['anime'].title()}', 
                 released_date= '{update_data['released_date']}', 
                 seasons= '{update_data['seasons']}'
             WHERE
